@@ -1,0 +1,5 @@
+*.o
+*.obj
+*.out
+*.exe
+arena_allocator
