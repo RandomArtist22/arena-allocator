@@ -42,7 +42,7 @@ void *arena_alloc_align(Arena *a, size_t size, size_t align) {
 }
 
 void *arena_alloc(Arena *a, size_t size) {
-    return arena_alloc_align(a, size, DEFUALT_ALIGNMENT);
+    return arena_alloc_align(a, size, DEFAULT_ALIGNMENT);
 }
 
 void arena_init(Arena *a, void *backing_buffer, size_t backing_buffer_length) {
@@ -93,7 +93,7 @@ void *arena_resize_align(Arena *a, void *old_memory, size_t old_size,
 void *arena_resize(Arena *a, void *old_memory, size_t old_size,
                    size_t new_size) {
     return arena_resize_align(a, old_memory, old_size, new_size,
-                              DEFUALT_ALIGNMENT);
+                              DEFAULT_ALIGNMENT);
 }
 
 void arena_free_all(Arena *a) {

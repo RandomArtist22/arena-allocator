@@ -13,8 +13,8 @@ struct Arena {
     size_t curr_offset;
 };
 
-#ifndef DEFUALT_ALIGNMENT
-#define DEFUALT_ALIGNMENT (2 * sizeof(void *))
+#ifndef DEFAULT_ALIGNMENT
+#define DEFAULT_ALIGNMENT (2 * sizeof(void *))
 #endif
 
 void *arena_alloc_align(Arena *a, size_t size, size_t align);
