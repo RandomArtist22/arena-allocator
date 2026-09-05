@@ -54,7 +54,8 @@ void arena_init(Arena *a, void *backing_buffer, size_t backing_buffer_length) {
 }
 
 void arena_free(Arena *a, void *ptr) {
-    // Do nothing
+    (void)a;
+    (void)ptr;
 }
 
 void *arena_resize_align(Arena *a, void *old_memory, size_t old_size,
