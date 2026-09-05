@@ -30,7 +30,8 @@ void *arena_alloc_align(Arena *a, size_t size, size_t align) {
     uintptr_t offset = align_forward(curr_ptr, align);
     offset -= (uintptr_t)a->buf;
 
-    if (offset + size <= a->buf_len) {
+    if (size <= a->buf_len &&
+        offset <= a->buf_len - size) { // Check for overflow
         void *ptr = &a->buf[offset];
         a->prev_offset = offset;
         a->curr_offset = offset + size;
@@ -66,7 +67,8 @@ void *arena_resize_align(Arena *a, void *old_memory, size_t old_size,
         return arena_alloc_align(a, new_size, align);
     } else if (a->buf <= old_mem && old_mem < a->buf + a->buf_len) {
         if (a->buf + a->prev_offset == old_mem) {
-            if (a->prev_offset + new_size > a->buf_len) {
+            if (new_size < a->buf_len &&
+                a->prev_offset < a->buf_len - new_size) { // Check for overflow
                 return NULL;
             }
 
